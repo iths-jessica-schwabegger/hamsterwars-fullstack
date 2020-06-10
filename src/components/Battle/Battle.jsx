@@ -5,7 +5,7 @@ import mountainImage from "./mountainImage.jpg";
 
 const Battle = () => {
 
-const [hamster, setHamster] = useState(null);
+//const [hamster, setHamster] = useState(null);
 
         // let randomHamster = getRandomHamster();
         // console.log(randomHamster.name);
@@ -25,16 +25,16 @@ const [hamster, setHamster] = useState(null);
 }
 
 
-async function getRandomHamster() {
-    let baseUrl = "/api";
+// async function getRandomHamster() {
+//     let baseUrl = "/api";
 
-    try{
-        const response = await fetch(baseUrl + "/hamsters/random");
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.log(error);
-    }
-}
+//     try{
+//         const response = await fetch(baseUrl + "/hamsters/random");
+//         const data = await response.json();
+//         return data;
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
 export default Battle;

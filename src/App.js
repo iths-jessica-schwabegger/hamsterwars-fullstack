@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter as Router, Route, Switch, Link, NavLink, Redirect} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch, NavLink} from "react-router-dom";
 import StartPage from "./components/StartPage/StartPage";
 import Battle from "./components/Battle/Battle";
 import Stats from "./components/Stats/Stats";
