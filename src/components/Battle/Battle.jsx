@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./Battle.css";
-import mountainImage from "./mountainImage.jpg";
+//import mountainImage from "./img.jpg";
 
 
 const Battle = () => {
@@ -16,8 +16,8 @@ const Battle = () => {
         <section className="battle">
             <h1>Which hamster is the winner?</h1>
             <section>
-                <img src={mountainImage} alt=""/>
-                <img src={mountainImage} alt=""/>
+                {/* <img src={mountainImage} alt=""/>
+                <img src={mountainImage} alt=""/> */}
             </section>
             {/* <p>{data.name}</p> */}
         </section>
