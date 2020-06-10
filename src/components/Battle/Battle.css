@@ -1,0 +1,12 @@
+
+.battle section img {
+    width: 15rem;
+    cursor: pointer;
+    margin: 2rem;
+}
+
+.battle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

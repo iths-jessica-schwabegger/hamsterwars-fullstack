@@ -1,0 +1,72 @@
+.upload form input{
+    display: block;
+    margin: 0.7rem 0;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+}
+
+.upload button {
+    font-size: 1rem;
+    padding: 0.7rem;
+}
+
+.upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload form {
+    background-color: rgba(156, 185, 204, 0.74);
+    padding: 1rem 2rem;
+    border-radius: 0.2rem;
+}
+
+.upload h1 {
+    margin: 2rem;
+}
+
+.hide {
+    display: none;
+}
+
+.upload .valid {
+    border: 1px solid rgb(77, 153, 77);
+}
+
+.upload .invalid {
+    border: 1px solid rgb(247, 112, 112);
+}
+
+.upload .error {
+    position: absolute;
+    /* top: 17rem;
+    left: 44rem; */
+    color: white;
+}
+
+.upload .name-error {
+    top: 19rem;
+    right: 9rem;
+}
+
+.upload .age-error {
+    top: 22rem;
+    right: 8rem;
+}
+.upload .loves-error {
+    top: 25rem;
+    right: 9rem;
+}
+.upload .food-error {
+    top: 28rem;
+    right: 9rem;
+}
+
+.upload .hide {
+    display: none;
+}
+
+
