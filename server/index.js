@@ -44,8 +44,6 @@ app.use("/stats", statsRoute);
 const port = process.env.PORT || 2048;
 app.use(express.static(__dirname + "/../build"));
 
-// app.listen(port, () => console.log('Server is listening on port ' + port));
-
 
 app.listen(port, () => {
     console.log("Server is up and running on port " + port);
