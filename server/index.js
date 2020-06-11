@@ -26,27 +26,28 @@ app.use((req, res, next) => {
 
 //----------------ROUTES-----------------
 app.use("/", express.static("public"));
-app.use("/api/assets", express.static("assets/hamsters"));
-app.use("/api/assets/upload", express.static("assets"));
+app.use("/assets", express.static("assets/hamsters"));
+app.use("/assets/upload", express.static("assets"));
 
 
 const hamstersRoute = require("./routes/hamsters");
-app.use("/api/hamsters", hamstersRoute);
+app.use("/hamsters", hamstersRoute);
 const chartsRoute = require("./routes/charts");
-app.use("api/charts", chartsRoute);
+app.use("/charts", chartsRoute);
 const gamesRoute = require("./routes/games");
-app.use("api/games", gamesRoute);
+app.use("/games", gamesRoute);
 const statsRoute = require("./routes/stats");
-app.use("api/stats", statsRoute);
+app.use("/stats", statsRoute);
 
 //-----------------------------------------
 
 const port = process.env.PORT || 2048;
 app.use(express.static(__dirname + "/../build"));
 
-app.listen(process.env.PORT || 2048);
+// app.listen(port, () => console.log('Server is listening on port ' + port));
 
-// app.listen(port, () => {
-//     console.log("Server is up and running!");
+
+app.listen(port, () => {
+    console.log("Server is up and running on port " + port);
     
-// })
+})
