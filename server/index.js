@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
+app.use(express.static(__dirname + "/../build"));
+
 //---------------Auth middleware------------------
 app.use((req, res, next) => {
 
@@ -25,9 +27,9 @@ app.use((req, res, next) => {
 })
 
 //----------------ROUTES-----------------
-app.use("/", express.static("public"));
-app.use("/assets", express.static("assets/hamsters"));
-app.use("/assets/upload", express.static("assets"));
+// app.use("/", express.static("public"));
+// app.use("/assets", express.static("assets/hamsters"));
+// app.use("/assets/upload", express.static("assets"));
 
 
 const hamstersRoute = require("./routes/hamsters");
@@ -42,7 +44,6 @@ app.use("/stats", statsRoute);
 //-----------------------------------------
 
 const port = process.env.PORT || 2048;
-app.use(express.static(__dirname + "/../build"));
 
 
 app.listen(port, () => {
