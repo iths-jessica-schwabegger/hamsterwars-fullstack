@@ -27,9 +27,9 @@ app.use((req, res, next) => {
 })
 
 //----------------ROUTES-----------------
-// app.use("/", express.static("public"));
-// app.use("/assets", express.static("assets/hamsters"));
-// app.use("/assets/upload", express.static("assets"));
+app.use("/", express.static("public"));
+app.use("/assets", express.static("assets/hamsters"));
+app.use("/assets/upload", express.static("assets"));
 
 
 const hamstersRoute = require("./routes/hamsters");
@@ -40,7 +40,8 @@ const gamesRoute = require("./routes/games");
 app.use("/games", gamesRoute);
 const statsRoute = require("./routes/stats");
 app.use("/stats", statsRoute);
-
+const imagesRoute = require("./routes/images");
+app.use("/images", imagesRoute);
 //-----------------------------------------
 
 const port = process.env.PORT || 2048;

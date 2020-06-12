@@ -1,40 +1,49 @@
 import React, {useState, useEffect} from "react";
 import "./Battle.css";
-//import mountainImage from "./img.jpg";
+// import firebase from "firebase/app";
 
 
 const Battle = () => {
 
-//const [hamster, setHamster] = useState(null);
+    const [hamsterOne, setHamsterOne] = useState("");
+    const [hamsterTwo, setHamsterTwo] = useState("");
 
-        // let randomHamster = getRandomHamster();
-        // console.log(randomHamster.name);
-        // setHamster(randomHamster);
+    useEffect(() => {
+        
+        //lägg bilder i mappen istället?
+        async function getRandomHamster() {
+            let response = await fetch("/hamsters/random");
+            const randomHamsterOne = await response.json();
+            console.log(randomHamsterOne);
 
+            response = await fetch("/hamsters/random");
+            const randomHamsterTwo = await response.json();
+            console.log(randomHamsterTwo.name);
+
+            setHamsterOne(randomHamsterOne)
+            setHamsterTwo(randomHamsterTwo);
+        }
+
+        getRandomHamster();
+
+    }, [])
 
     return(
         <section className="battle">
             <h1>Which hamster is the winner?</h1>
             <section>
-                {/* <img src={mountainImage} alt=""/>
-                <img src={mountainImage} alt=""/> */}
+                <article>
+                    <img src={"/images/" + hamsterOne.imgName} alt="Cute hamster"/>
+                    <p>{hamsterOne.name}</p>
+                </article>
+                <article>
+                    <img src={"/images/" + hamsterTwo.imgName} alt="Cute hamster"/>
+                    <p>{hamsterTwo.name}</p>
+                </article>
             </section>
-            {/* <p>{data.name}</p> */}
+            <p>Click the cutest hamster!</p>
         </section>
     )
 }
-
-
-// async function getRandomHamster() {
-//     let baseUrl = "/api";
-
-//     try{
-//         const response = await fetch(baseUrl + "/hamsters/random");
-//         const data = await response.json();
-//         return data;
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
 
 export default Battle;

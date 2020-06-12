@@ -1,3 +1,7 @@
+const { Router } = require('express');
+const router = new Router();
+
+
 var firebaseConfig = {
     apiKey: "AIzaSyDgVH3XRWJRSX9f157tlAGPi6ucVsy77Eo",
     authDomain: "hamst3rwars.firebaseapp.com",

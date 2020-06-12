@@ -1,8 +1,17 @@
 
-.battle section img {
+.battle section article img {
     width: 15rem;
+    height: 10rem;
     cursor: pointer;
     margin: 2rem;
+    border-radius: 0.2rem;
+    border: 2px solid rgb(143, 139, 170);
+    object-fit: cover;
+}
+
+.battle section {
+    display: flex;
+    flex-direction: row;
 }
 
 .battle {

@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(57, 47, 63);
+    background-color: rgb(205, 202, 207);
     margin: 0;
     height: 100vh;
 }
@@ -19,12 +19,14 @@ body {
 .app-header nav a{
     padding: 2rem;
     text-decoration: none;
-    color: rgb(207, 207, 207);
+    color: rgb(66, 67, 87);
 
 }
 
 footer {
-    height: 10rem;
+    position: absolute;
+    bottom: 0;
+    height: 8rem;
     width: 100%;
     background-color: grey;
 }

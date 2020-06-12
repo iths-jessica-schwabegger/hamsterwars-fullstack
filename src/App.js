@@ -7,10 +7,13 @@ import Stats from "./components/Stats/Stats";
 import Upload from "./components/Upload/Upload";
 import styled from "styled-components";
 
-const StyledSection = styled.section`
+const StyledFooter = styled.footer`
+position: absolute;
+bottom: 0;
+overflow: hidden;
+height: 8rem;
 width: 100%;
-height: 10rem;
-background-image: linear-gradient(rgb(35, 35, 49), rgb(35, 35, 49));
+background-image: linear-gradient(#433a49, #433a49);
 transform: skewY(5deg);
 transform-origin: bottom left;
 `
@@ -43,10 +46,9 @@ function App() {
             <Route path="/upload"><Upload /></Route>
             <Route path="/"><StartPage /></Route>
         </Switch>
-        <StyledSection></StyledSection>
       </main>
-      <footer></footer>
-    </Router>
+      <StyledFooter></StyledFooter>
+      </Router>
  
   );
 }
