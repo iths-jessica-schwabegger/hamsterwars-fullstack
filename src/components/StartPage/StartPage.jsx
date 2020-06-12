@@ -1,16 +1,13 @@
 import React, {useState} from "react";
-import { useEffect } from "react";
 import "./StartPage.css";
 import {Link} from "react-router-dom";
 
 
 const StartPage = () => {
      
-    const [startText, setStartText] = useState("");
-
     return(
-        <section>
-            <section className="welcome-section">
+        <section className="start-page">
+            <section>
                 <h1>Welcome to Hamsterwars!</h1>
                 <p>Which hamster is the cutest?</p>
             </section>

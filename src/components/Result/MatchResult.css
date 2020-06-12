@@ -11,3 +11,8 @@
     padding: 0;
     text-align: left;
 }
+
+.match-result article img {
+    width: 10rem;
+    height: 7rem;
+}

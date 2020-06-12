@@ -10,7 +10,6 @@ const Battle = () => {
     const [hamsterTwo, setHamsterTwo] = useState("");
     const [newGame, setNewGame] = useState(false);
     const [winner, setWinner] = useState("");
-    const [generateNewHamsters, setGenerateNewHamsters] = useState(false);
 
     useEffect(() => {
 
@@ -21,19 +20,20 @@ const Battle = () => {
             response = await fetch("/hamsters/random");
             const randomHamsterTwo = await response.json();
 
-            //Ej testat om denna fungerar
-            if(randomHamsterOne !== randomHamsterTwo) {
+            //Kanske fungerar
+            if(randomHamsterOne.id === randomHamsterTwo.id) {
+                console.log("FOUND SAME!")
+                newGame ? setNewGame(false) : setNewGame(true);
+
+            }else {
                 setHamsterOne(randomHamsterOne)
                 setHamsterTwo(randomHamsterTwo);
-            }else {
-                console.log("FOUND SAME!")
-                generateNewHamsters ? setGenerateNewHamsters(false) : setGenerateNewHamsters(true);
             }
         }
 
         getRandomHamster();
 
-    }, [newGame, generateNewHamsters])
+    }, [newGame])
 
     function handleClick(winner, looser) {
         console.log(winner.id);
@@ -42,6 +42,7 @@ const Battle = () => {
         newGame ? setNewGame(false) : setNewGame(true);
         updateWinner(winner.id);
         updateLooser(looser.id);
+        updateGames(winner.id, looser.id);
     }
 
     return(
@@ -104,6 +105,26 @@ function updateWinner(id) {
         };
     
         fetch(`/hamsters/${id}/results`, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+    }
+
+    function updateGames(winner, looser) {
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "superSecretKey");
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({"contestants":{"id1": winner,"id2": looser}, "winner":{"id": winner}});
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+
+        fetch("/games", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));

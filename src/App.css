@@ -30,3 +30,7 @@ footer {
     width: 100%;
     background-color: grey;
 }
+
+p, h1, h2 {
+    color: rgb(66, 67, 87);
+}

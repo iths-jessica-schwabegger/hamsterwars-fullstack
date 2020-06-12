@@ -4,15 +4,17 @@ import "./MatchResult.css";
 
 const MatchResult = (props) => {
 
-    console.log(props.winner);
+    const winner = props.winner;
+
     return(
         <section className="match-result">
             <article>
                 <h3>And the winner is..</h3>
                 <ul>
-                    <li>Name: {props.winner.name}</li>
-                    <li>Age: {props.winner.age}</li>
+                    <li>Name: {winner.name}</li>
+                    <li>Age: {winner.age}</li>
                 </ul>
+                {/* <img src={"/images/" + winner.imgName} alt=""></img> */}
             </article>
         </section>
     ) 
