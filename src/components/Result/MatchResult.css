@@ -1,0 +1,13 @@
+.match-result article{
+    display: flex;
+    flex-direction: column;
+}
+
+.match-result article li {
+    list-style: none;
+}
+
+.match-result article ul {
+    padding: 0;
+    text-align: left;
+}

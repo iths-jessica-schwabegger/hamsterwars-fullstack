@@ -5,9 +5,9 @@ const router = new Router();
 
 
 
-router.get('/:filename', async (req,res) => {
+router.get('/:imgName', async (req,res) => {
 
-    let img = await storage.bucket().file(`hamsters/${req.params.filename}`).download();
+    let img = await storage.bucket().file(`hamsters/${req.params.imgName}`).download();
     img = Buffer.concat(img);
 
     res.status(200).contentType("jpg").send(img);

@@ -5,6 +5,7 @@ import StartPage from "./components/StartPage/StartPage";
 import Battle from "./components/Battle/Battle";
 import Stats from "./components/Stats/Stats";
 import Upload from "./components/Upload/Upload";
+import MatchResult from "./components/Result/MatchResult";
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
@@ -44,6 +45,7 @@ function App() {
             <Route path="/battle"><Battle /></Route>
             <Route path="/stats"><Stats /></Route>
             <Route path="/upload"><Upload /></Route>
+            <Route path="/matchresult"><MatchResult /></Route>
             <Route path="/"><StartPage /></Route>
         </Switch>
       </main>

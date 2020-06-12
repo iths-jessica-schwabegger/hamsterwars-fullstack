@@ -11,7 +11,7 @@ app.use((req, res, next) => {
     if(req.method !== "GET") {
 
         //API-nyckel sparad i .env-filen
-        const APIKey = process.env.KEY;
+        const APIKey = process.env.API_KEY;
 
         //jämför API-nyckel med nyckeln under auth i headers vid post/put
         if(APIKey === req.headers["authorization"]) {
@@ -27,9 +27,10 @@ app.use((req, res, next) => {
 })
 
 //----------------ROUTES-----------------
-app.use("/", express.static("public"));
-app.use("/assets", express.static("assets/hamsters"));
-app.use("/assets/upload", express.static("assets"));
+// Används ej
+// app.use("/", express.static("public"));
+// app.use("/assets", express.static("assets/hamsters"));
+// app.use("/assets/upload", express.static("assets"));
 
 
 const hamstersRoute = require("./routes/hamsters");
