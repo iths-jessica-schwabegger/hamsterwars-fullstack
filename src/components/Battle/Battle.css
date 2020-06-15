@@ -1,11 +1,11 @@
 
 .battle section article img {
     width: 15rem;
-    height: 10rem;
+    height: 15rem;
     cursor: pointer;
     margin: 2rem;
-    border-radius: 0.2rem;
-    border: 2px solid rgb(143, 139, 170);
+    border-radius: 50%;
+    /* border: 2px solid rgb(143, 139, 170); */
     object-fit: cover;
 }
 

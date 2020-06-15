@@ -19,6 +19,8 @@ const Upload = () => {
     let [lovesClass, lovesError] = lovesTouched ? isValidString(loves) : ["", ""];
     let [foodClass, foodError] = foodTouched ? isValidString(food) : ["", ""];
 
+    const [hamsterAdded, setHamsterAdded] = useState("");
+
     const stopSubmit = event => {
         event.preventDefault();
     }
@@ -51,8 +53,8 @@ const Upload = () => {
             <section className={ageError ? "error age-error" : "hide"}>{ageError ? ageError : ""}</section>
             <section className={lovesError ? "error loves-error" : "hide"}>{lovesError ? lovesError : ""}</section>
             <section className={foodError ? "error food-error" : "hide"}>{foodError ? foodError : ""}</section>
-            <button onClick={() => uploadNewHamster(name, age, loves, food)}>Add hamster</button>
-            <p className={name ? "" : "hide"}>{name} will be added to the battle!</p>
+            <button onClick={() => uploadNewHamster(name, age, loves, food), () => setHamsterAdded(`${name} will be added to the battle!`)}>Add hamster</button>
+            <p className={hamsterAdded ? "" : "hide"}>{hamsterAdded}</p>
         </section>
     )
 }

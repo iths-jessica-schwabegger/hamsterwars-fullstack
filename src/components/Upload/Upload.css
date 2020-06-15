@@ -5,6 +5,7 @@
     border: none;
     border-radius: 0.2rem;
     padding: 0.5rem;
+    width: 13rem;
 }
 
 .upload button {
@@ -20,8 +21,8 @@
 }
 
 .upload form {
-    background-color: rgba(224, 136, 65, 0.712);
-    padding: 1rem 2rem;
+    background-color: #6B7A8F;
+    padding: 4rem 3rem;
     border-radius: 0.2rem;
 }
 

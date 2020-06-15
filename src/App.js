@@ -13,7 +13,7 @@ position: fixed;
 bottom: 0;
 height: 8rem;
 width: 100%;
-background-image: linear-gradient(#433a49, #433a49);
+background-image: linear-gradient(#6B7A8F, #6B7A8F);
 transform: skewY(5deg);
 transform-origin: bottom left;
 `

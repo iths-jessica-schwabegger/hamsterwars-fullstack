@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(205, 202, 207);
+    background-color: whitesmoke;
     margin: 0;
     height: 100vh;
 }
@@ -30,6 +30,6 @@ footer {
     background-color: grey;
 }
 
-p, h1, h2 {
+p, h1, h2, h5 {
     color: rgb(66, 67, 87);
 }
