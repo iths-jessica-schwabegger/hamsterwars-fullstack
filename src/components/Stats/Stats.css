@@ -24,3 +24,23 @@
 .stats .total-games p {
     margin: 0.3rem;
 }
+
+.hamster-cards {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.hamster-cards img{
+    width: 10rem;
+    height: 7rem;
+    object-fit: cover;
+
+}
+
+.hamster-cards li {
+    list-style: none;
+}
+
+.hamster-cards ul {
+    padding: 0;
+}

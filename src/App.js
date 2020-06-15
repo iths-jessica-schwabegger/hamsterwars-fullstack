@@ -9,9 +9,8 @@ import MatchResult from "./components/Result/MatchResult";
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
-position: absolute;
+position: fixed;
 bottom: 0;
-overflow: hidden;
 height: 8rem;
 width: 100%;
 background-image: linear-gradient(#433a49, #433a49);

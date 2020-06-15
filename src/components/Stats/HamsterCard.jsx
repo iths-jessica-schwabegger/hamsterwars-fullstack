@@ -2,45 +2,54 @@ import React, {useState, useEffect} from "react";
 
 const HamsterCard = () => {
 
-    const [topHamsters, setTopHamsters] = useState("");
-    const [bottomHamsters, setBottomHamsters] = useState("");
+    const [topHamsters, setTopHamsters] = useState([]);
+    const [bottomHamsters, setBottomHamsters] = useState([]);
 
 
     useEffect(() => {
         async function getTopHamsters() {
             const response = await fetch("/charts/top");
             const topFive = await response.json();
-            console.log(topFive.topHamsters);
             setTopHamsters(topFive.topHamsters);
         }
         getTopHamsters();
 
         async function getBottomHamsters() {
-            const response = await fetch("/charts/top");
+            const response = await fetch("/charts/bottom");
             const bottomFive = await response.json();
-            setBottomHamsters(bottomFive.topHamsters);
+            setBottomHamsters(bottomFive.bottomHamsters);
         }
         getBottomHamsters();
-    }, [])
-    console.log(topHamsters);
+    }, []);
+
+
+
     return(
-        <section className="hamster-card">
-            {/* <article>
+        <section className="hamster-cards">
+            <article className="top-hamsters">
+                <h1>Top 5 hamsters!</h1>
                 {topHamsters.map(hamster => (
-                    <ul>
-                        <li>{hamster.name}</li>
-                        <li>{hamster.wins}</li>
-                    </ul>
+                    <section>
+                        <img src={"/images/" + hamster.imgName} alt="Cute hamster"></img>
+                        <ul>
+                            <li key={hamster.id + hamster.name}>{hamster.name}</li>
+                            <li key={hamster.id + hamster.wins}>Wins: {hamster.wins}</li>
+                        </ul>
+                    </section>
                 ))}
             </article>
-            <article>
+            <article className="bottom-hamsters">
+                <h1>Bottom 5 hamsters!</h1>
                 {bottomHamsters.map(hamster => (
+                    <section>
+                        <img src={"/images/" + hamster.imgName} alt="Cute hamster"></img>
                         <ul>
-                            <li>{hamster.name}</li>
-                            <li>{hamster.wins}</li>
+                            <li key={hamster.id + hamster.name}>{hamster.name}</li>
+                            <li key={hamster.id + hamster.wins}>Wins: {hamster.wins}</li>
                         </ul>
+                    </section>
                 ))}
-            </article> */}
+            </article>
         </section>
     )
 }
