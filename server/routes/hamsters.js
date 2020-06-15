@@ -90,7 +90,7 @@ router.post("/", async (req, res) => {
         snapShot.forEach(doc => {
             hamsters.push(doc.data());
         })
-        console.log(hamsters.length);
+
         db.collection("hamsters").doc().set({
             id: hamsters.length+1,
             name: req.body.name,

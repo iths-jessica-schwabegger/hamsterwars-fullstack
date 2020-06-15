@@ -3,3 +3,24 @@
 .stats h1 {
     text-align: center;
 }
+
+.stats .total-games {
+    width: 10rem;
+    height: 10rem;
+    background-color: rgba(224, 136, 65, 0.712);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.stats .total-games h2 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.stats .total-games p {
+    margin: 0.3rem;
+}

@@ -23,6 +23,7 @@ const Upload = () => {
         event.preventDefault();
     }
 
+
     return(
         <section className="upload">
             <h1>Upload your own hamster!</h1>
@@ -31,25 +32,26 @@ const Upload = () => {
                     onChange={e => setName(e.target.value)}
                     onBlur={() => setNameTouched(true)}
                     className={nameClass}></input>
-                <section className={nameError ? "error name-error" : "hide"}>{nameError ? nameError : ""}</section>
                 <input placeholder="Age" 
                     onChange={e => setAge(e.target.value)}
                     onBlur={() => setAgeTouched(true)}
                     className={ageClass}></input>
-                <section className={ageError ? "error age-error" : "hide"}>{ageError ? ageError : ""}</section>
                 <input placeholder="Loves to do" 
                     onChange={e => setLoves(e.target.value)}
                     onBlur={() => setLovesTouched(true)}
                     className={lovesClass}></input>
-                <section className={lovesError ? "error loves-error" : "hide"}>{lovesError ? lovesError : ""}</section>
                 <input placeholder="Favourite food" 
                     onChange={e => setFood(e.target.value)}
                     onBlur={() => setFoodTouched(true)}
                     className={foodClass}></input>
-                    <section className={foodError ? "error food-error" : "hide"}>{foodError ? foodError : ""}</section>
-                <p>Upload img?</p>
+                    {/* <input type="file" name="photo" id="file" /> */}
+
             </form>
-            <button>Add hamster</button>
+            <section className={nameError ? "error name-error" : "hide"}>{nameError ? nameError : ""}</section>
+            <section className={ageError ? "error age-error" : "hide"}>{ageError ? ageError : ""}</section>
+            <section className={lovesError ? "error loves-error" : "hide"}>{lovesError ? lovesError : ""}</section>
+            <section className={foodError ? "error food-error" : "hide"}>{foodError ? foodError : ""}</section>
+            <button onClick={() => uploadNewHamster(name, age, loves, food)}>Add hamster</button>
             <p className={name ? "" : "hide"}>{name} will be added to the battle!</p>
         </section>
     )
@@ -69,6 +71,28 @@ function isValidAge(age) {
     }else {
         return ["invalid", "Please enter your hamster's age in years."]
     }
+}
+
+
+function uploadNewHamster(name, age, loves, food) {
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "superSecretKey");
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({"name": name,"age": age,"favFood": food,"loves": loves});
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("/hamsters", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
 }
 
 export default Upload;

@@ -18,10 +18,11 @@ const Stats = () => {
 
     return(
         <section className="stats">
-            <h1>Stats will appear here</h1>
-            <article>
-                <p>Total games played: {totalGames.totalGames}</p>
+            <article className="total-games">
+                <p>Total games</p>
+                <h2>{totalGames.totalGames}</h2>
             </article>
+            <h1>Stats</h1>
             <HamsterCard />
         </section>
     )
