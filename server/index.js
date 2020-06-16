@@ -32,6 +32,14 @@ app.use((req, res, next) => {
 // app.use("/assets", express.static("assets/hamsters"));
 // app.use("/assets/upload", express.static("assets"));
 
+app.use('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, './public/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
+
 
 const hamstersRoute = require("./routes/hamsters");
 app.use("/hamsters", hamstersRoute);
@@ -44,15 +52,6 @@ app.use("/stats", statsRoute);
 const imagesRoute = require("./routes/images");
 app.use("/images", imagesRoute);
 
-
-app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname, './public/index.html'), function(err) {
-      if (err) {
-        res.status(500).send(err)
-      }
-    })
-  })
-  
 //-----------------------------------------
 
 const port = process.env.PORT || 2048;
