@@ -43,6 +43,16 @@ const statsRoute = require("./routes/stats");
 app.use("/stats", statsRoute);
 const imagesRoute = require("./routes/images");
 app.use("/images", imagesRoute);
+
+
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, './public/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
+  
 //-----------------------------------------
 
 const port = process.env.PORT || 2048;

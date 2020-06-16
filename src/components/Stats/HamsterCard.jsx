@@ -30,8 +30,10 @@ const HamsterCard = () => {
                 <h1>Top 5 hamsters!</h1>
                 {topHamsters.map(hamster => (
                     <section>
-                        <h5>{hamster.name}</h5>
-                        <p>Wins: {hamster.wins}</p>
+                        <article>
+                            <h5>{hamster.name}</h5>
+                            <p>Wins: {hamster.wins}</p>
+                        </article>
                         <img src={"/images/" + hamster.imgName} alt="Cute hamster"></img>
                     </section>
                 ))}
@@ -40,8 +42,10 @@ const HamsterCard = () => {
                 <h1>Bottom 5 hamsters!</h1>
                 {bottomHamsters.map(hamster => (
                     <section>
-                        <h5>{hamster.name}</h5>
-                        <p>Defeats: {hamster.defeats}</p>
+                        <article>
+                            <h5>{hamster.name}</h5>
+                            <p>Defeats: {hamster.defeats}</p>
+                        </article>
                         <img src={"/images/" + hamster.imgName} alt="Cute hamster"></img>
                     </section>
                 ))}

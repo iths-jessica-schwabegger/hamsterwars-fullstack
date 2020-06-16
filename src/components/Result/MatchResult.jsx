@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import "./MatchResult.css";
 
 
@@ -8,13 +8,13 @@ const MatchResult = (props) => {
 
     return(
         <section className="match-result">
+            <h3>And the winner is..</h3>
             <article>
-                <h3>And the winner is..</h3>
+                <img src={"/images/" + winner.imgName} alt=""></img>
                 <ul>
-                    <li>Name: {winner.name}</li>
-                    <li>Age: {winner.age}</li>
+                    <li key={winner.id + winner.name}>Name: {winner.name}</li>
+                    <li key={winner.id + winner.age}>Age: {winner.age}</li>
                 </ul>
-                {/* <img src={"/images/" + winner.imgName} alt=""></img> */}
             </article>
         </section>
     ) 

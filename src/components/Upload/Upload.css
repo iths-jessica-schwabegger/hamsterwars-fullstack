@@ -24,6 +24,9 @@
     background-color: #6B7A8F;
     padding: 4rem 3rem;
     border-radius: 0.2rem;
+    -webkit-box-shadow: 6px 9px 33px -17px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 9px 33px -17px rgba(0,0,0,0.75);
+    box-shadow: 6px 9px 33px -17px rgba(0,0,0,0.75);
 }
 
 .upload h1 {

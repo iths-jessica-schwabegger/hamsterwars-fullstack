@@ -4,7 +4,7 @@ import MatchResult from "../Result/MatchResult";
 
 
 
-const Battle = () => {
+const Battle = ({ match }) => {
 
     const [hamsterOne, setHamsterOne] = useState("");
     const [hamsterTwo, setHamsterTwo] = useState("");
@@ -13,6 +13,24 @@ const Battle = () => {
 
     useEffect(() => {
 
+        if(match) {
+
+            async function getHamsterById() {
+                let response = await fetch(`/hamsters/${match.params.id1}`);
+                const hamsterOne = await response.json();
+                console.log(hamsterOne);
+
+                response = await fetch(`/hamsters/${match.params.id2}`);
+                const hamsterTwo = await response.json();
+                console.log(hamsterTwo)
+
+                setHamsterOne(hamsterOne.hamster);
+                setHamsterTwo(hamsterTwo.hamster);
+
+            }
+            getHamsterById();
+        }else {
+
         async function getRandomHamster() {
             let response = await fetch("/hamsters/random");
             const randomHamsterOne = await response.json();
@@ -20,7 +38,6 @@ const Battle = () => {
             response = await fetch("/hamsters/random");
             const randomHamsterTwo = await response.json();
 
-            //Kanske fungerar
             if(randomHamsterOne.id === randomHamsterTwo.id) {
                 console.log("FOUND SAME!")
                 newGame ? setNewGame(false) : setNewGame(true);
@@ -32,6 +49,7 @@ const Battle = () => {
         }
 
         getRandomHamster();
+        }
 
     }, [newGame])
 
@@ -49,7 +67,7 @@ const Battle = () => {
         <section className="battle">
             <h1>Which hamster is the cutest?</h1>
             <p>Click to choose!</p>
-            <section>
+            <section className="battle-images">
                 <article>
                         <img src={"/images/" + hamsterOne.imgName} alt="Cute hamster"
                             onClick={() => handleClick(hamsterOne, hamsterTwo)}/>

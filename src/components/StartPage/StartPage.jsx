@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import "./StartPage.css";
 import {Link} from "react-router-dom";
 

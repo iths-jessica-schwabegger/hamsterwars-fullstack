@@ -5,15 +5,15 @@
 }
 
 .stats .total-games {
-    width: 10rem;
-    height: 10rem;
+    width: 8rem;
+    height: 8rem;
     background-color: rgba(224, 136, 65, 0.712);
     border-radius: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 2rem;
+    margin: 2rem 0 0 1rem;
 }
 
 .stats .total-games h2 {
@@ -49,12 +49,23 @@
     padding: 0.2rem;
 }
 
-.hamster-cards h5{
-    margin: 0 0 0 2rem;
+.top-hamsters section, .bottom-hamsters section{
+    -webkit-box-shadow: 6px 9px 33px -17px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 9px 33px -17px rgba(0,0,0,0.75);
+    box-shadow: 6px 9px 33px -17px rgba(0,0,0,0.75);  
+}
+
+.hamster-cards h5, p{
+    margin: 0.3rem 0 0 2rem;
 
 }
 
 .hamster-cards p {
     display: block;
     font-size: 1.2rem;
+}
+
+.top-hamsters section article, .bottom-hamsters section article {
+    display: flex;
+    flex-direction: column;
 }

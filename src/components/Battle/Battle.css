@@ -1,15 +1,19 @@
 
-.battle section article img {
+.battle img {
     width: 15rem;
     height: 15rem;
     cursor: pointer;
     margin: 2rem;
     border-radius: 50%;
-    /* border: 2px solid rgb(143, 139, 170); */
     object-fit: cover;
+    -webkit-box-shadow: 6px 9px 33px -17px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 9px 33px -17px rgba(0,0,0,0.75);
+    box-shadow: 6px 9px 33px -17px rgba(0,0,0,0.75);
 }
 
-.battle section {
+
+
+.battle .battle-images {
     display: flex;
     flex-direction: row;
 }
