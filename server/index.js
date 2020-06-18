@@ -6,10 +6,11 @@ app.use(express.json());
 
 app.use(express.static(__dirname + "/../build"));
 
-app.get('*', (req,res) => {
-    let filePath = path.resolve('./build/index.html')
-    res.sendFile(filePath)
-})
+
+// app.get('*', (req,res) => {
+//     let filePath = path.resolve('./build/index.html')
+//     res.sendFile(filePath)
+// })
 
 //----------------------------Rate Limit----------------------------------
 const rateLimit = require("express-rate-limit");
@@ -75,6 +76,9 @@ app.use("/images", imagesRoute);
 
 const port = process.env.PORT || 2048;
 
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname+"/..build/index-html"));
+});
 
 app.listen(port, () => {
     console.log("Server is up and running on port " + port);
