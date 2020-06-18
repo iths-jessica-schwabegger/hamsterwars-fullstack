@@ -59,6 +59,9 @@
     margin: 0.3rem 0 0 2rem;
 
 }
+.hamster-cards h3 {
+    text-align: center;
+}
 
 .hamster-cards p {
     display: block;

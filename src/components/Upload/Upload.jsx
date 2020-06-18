@@ -7,6 +7,7 @@ const Upload = () => {
     const [age, setAge] = useState("");
     const [loves, setLoves] = useState("");
     const [food, setFood] = useState("");
+    const [uploadedFile, setUploadedFile] = useState(null);
 
     const [nameTouched, setNameTouched] = useState(false);
     const [ageTouched, setAgeTouched] = useState(false);
@@ -23,6 +24,17 @@ const Upload = () => {
 
     const stopSubmit = event => {
         event.preventDefault();
+    }
+
+    const onChangeHandler = event => {
+        setUploadedFile(event.target.files[0]);
+        
+    }
+
+    const handleClick = async () => {
+        setHamsterAdded(`${name} will be added to the battle!`);
+        await uploadNewHamster(name, age, loves, food);
+        await uploadImage(uploadedFile);
     }
 
 
@@ -46,14 +58,23 @@ const Upload = () => {
                     onChange={e => setFood(e.target.value)}
                     onBlur={() => setFoodTouched(true)}
                     className={foodClass}></input>
-                    {/* <input type="file" name="photo" id="file" /> */}
-
+                <input type="file" name="photo" id="file" 
+                    onChange={onChangeHandler}/>
             </form>
-            <section className={nameError ? "error name-error" : "hide"}>{nameError ? nameError : ""}</section>
-            <section className={ageError ? "error age-error" : "hide"}>{ageError ? ageError : ""}</section>
-            <section className={lovesError ? "error loves-error" : "hide"}>{lovesError ? lovesError : ""}</section>
-            <section className={foodError ? "error food-error" : "hide"}>{foodError ? foodError : ""}</section>
-            <button onClick={() => uploadNewHamster(name, age, loves, food), () => setHamsterAdded(`${name} will be added to the battle!`)}>Add hamster</button>
+
+            <section className={nameError ? "error name-error" : "hide"}>
+                <p>{nameError ? nameError : ""}</p>
+            </section>
+            <section className={ageError && !nameError ? "error age-error" : "hide"}>
+                <p>{ageError ? ageError : ""}</p>
+            </section>
+            <section className={lovesError && !nameError && !ageError ? "error loves-error" : "hide"}>
+                <p>{lovesError ? lovesError : ""}</p>
+            </section>
+            <section className={foodError && !nameError && !ageError && !lovesError ? "error food-error" : "hide"}>
+                <p>{foodError ? foodError : ""}</p>
+            </section>
+            <button onClick={() => handleClick()}>Add hamster</button>
             <p className={hamsterAdded ? "" : "hide"}>{hamsterAdded}</p>
         </section>
     )
@@ -78,11 +99,13 @@ function isValidAge(age) {
 
 function uploadNewHamster(name, age, loves, food) {
 
+    console.log("hej");
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "superSecretKey");
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({"name": name,"age": age,"favFood": food,"loves": loves});
+    console.log(raw);
 
     var requestOptions = {
         method: 'POST',
@@ -96,5 +119,27 @@ function uploadNewHamster(name, age, loves, food) {
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
 }
+
+function uploadImage(file) {
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "superSecretKey");
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: formData
+    };
+
+    fetch("/images", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+
+}
+
 
 export default Upload;

@@ -11,6 +11,8 @@
 .upload button {
     font-size: 1rem;
     padding: 0.7rem;
+    position: fixed;
+    bottom: 8rem;
 }
 
 .upload {
@@ -47,6 +49,16 @@
 
 .upload .hide {
     display: none;
+}
+
+.upload p {
+    margin: 1rem 0;
+}
+
+.upload .error p {
+    margin: 0.5rem 0 0 0;
+    color: rgb(199, 17, 17);
+    font-weight: bolder;
 }
 
 

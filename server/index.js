@@ -1,9 +1,32 @@
 require('dotenv').config();
 const express = require("express");
 const app = express();
+const path = require('path');
 app.use(express.json());
 
 app.use(express.static(__dirname + "/../build"));
+
+app.get('*', (req,res) => {
+    let filePath = path.resolve('./build/index.html')
+    res.sendFile(filePath)
+})
+
+//----------------------------Rate Limit----------------------------------
+const rateLimit = require("express-rate-limit");
+ 
+// Enable if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
+// see https://expressjs.com/en/guide/behind-proxies.html
+app.set('trust proxy', 1);
+ 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+});
+ 
+//  apply to all requests
+app.use(limiter);
+
+//--------------------------------------------------------------
 
 //---------------Auth middleware------------------
 app.use((req, res, next) => {
@@ -27,11 +50,6 @@ app.use((req, res, next) => {
 })
 
 //----------------ROUTES-----------------
-// Används ej
-// app.use("/", express.static("public"));
-// app.use("/assets", express.static("assets/hamsters"));
-// app.use("/assets/upload", express.static("assets"));
-
 
 const hamstersRoute = require("./routes/hamsters");
 app.use("/hamsters", hamstersRoute);
@@ -45,7 +63,6 @@ const imagesRoute = require("./routes/images");
 app.use("/images", imagesRoute);
 
 
-//verkar ej funka
 // app.get('/*', function(req, res) {
 //     res.sendFile(path.join(__dirname, './public/index.html'), function(err) {
 //       if (err) {

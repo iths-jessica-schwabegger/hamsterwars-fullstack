@@ -8,9 +8,9 @@ const Stats = () => {
 
     useEffect(() => {
         async function getTotalGames() {
-            const response = await fetch("/stats/total");
-            const games = await response.json();
-            setTotalGames(games);
+                const response = await fetch("/stats/total");
+                const games = await response.json();
+                setTotalGames(games);
         }
         getTotalGames();
     }, []);

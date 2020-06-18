@@ -8,26 +8,24 @@ const HamsterCard = () => {
 
     useEffect(() => {
         async function getTopHamsters() {
-            const response = await fetch("/charts/top");
-            const topFive = await response.json();
-            setTopHamsters(topFive.topHamsters);
+                const response = await fetch("/charts/top");
+                const topFive = await response.json();
+                setTopHamsters(topFive.topHamsters);
         }
         getTopHamsters();
 
         async function getBottomHamsters() {
-            const response = await fetch("/charts/bottom");
-            const bottomFive = await response.json();
-            setBottomHamsters(bottomFive.bottomHamsters);
+                const response = await fetch("/charts/bottom");
+                const bottomFive = await response.json();
+                setBottomHamsters(bottomFive.bottomHamsters);
         }
         getBottomHamsters();
     }, []);
 
-
-
     return(
         <section className="hamster-cards">
             <article className="top-hamsters">
-                <h1>Top 5 hamsters!</h1>
+                <h3>Top 5 hamsters!</h3>
                 {topHamsters.map(hamster => (
                     <section>
                         <article>
@@ -39,7 +37,7 @@ const HamsterCard = () => {
                 ))}
             </article>
             <article className="bottom-hamsters">
-                <h1>Bottom 5 hamsters!</h1>
+                <h3>Bottom 5 hamsters!</h3>
                 {bottomHamsters.map(hamster => (
                     <section>
                         <article>

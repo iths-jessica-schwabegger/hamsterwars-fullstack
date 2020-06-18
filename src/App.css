@@ -30,3 +30,12 @@ body {
 p, h1, h2, h5, h3, li {
     color: rgb(66, 67, 87);
 }
+
+h1, h3, h5 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: lighter;
+}
+
+p, input, a, li {
+    font-family: 'Roboto Condensed', sans-serif;
+}

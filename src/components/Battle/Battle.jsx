@@ -16,51 +16,49 @@ const Battle = ({ match }) => {
         if(match) {
 
             async function getHamsterById() {
-                let response = await fetch(`/hamsters/${match.params.id1}`);
-                const hamsterOne = await response.json();
-                console.log(hamsterOne);
+                    let response = await fetch(`/hamsters/${match.params.id1}`);
+                    const hamsterOne = await response.json();
+                    console.log(hamsterOne);
 
-                response = await fetch(`/hamsters/${match.params.id2}`);
-                const hamsterTwo = await response.json();
-                console.log(hamsterTwo)
+                    response = await fetch(`/hamsters/${match.params.id2}`);
+                    const hamsterTwo = await response.json();
+                    console.log(hamsterTwo)
 
-                setHamsterOne(hamsterOne.hamster);
-                setHamsterTwo(hamsterTwo.hamster);
-
+                    setHamsterOne(hamsterOne.hamster);
+                    setHamsterTwo(hamsterTwo.hamster);
             }
             getHamsterById();
         }else {
 
-        async function getRandomHamster() {
-            let response = await fetch("/hamsters/random");
-            const randomHamsterOne = await response.json();
+            async function getRandomHamster() {
+                let response = await fetch("/hamsters/random");
+                const randomHamsterOne = await response.json();
 
-            response = await fetch("/hamsters/random");
-            const randomHamsterTwo = await response.json();
+                response = await fetch("/hamsters/random");
+                const randomHamsterTwo = await response.json();
 
-            if(randomHamsterOne.id === randomHamsterTwo.id) {
-                console.log("FOUND SAME!")
-                newGame ? setNewGame(false) : setNewGame(true);
+                if(randomHamsterOne.id === randomHamsterTwo.id) {
+                    console.log("FOUND SAME!")
+                    newGame ? setNewGame(false) : setNewGame(true);
 
-            }else {
-                setHamsterOne(randomHamsterOne)
-                setHamsterTwo(randomHamsterTwo);
+                }else {
+                    setHamsterOne(randomHamsterOne)
+                    setHamsterTwo(randomHamsterTwo);
+                }
             }
-        }
-
-        getRandomHamster();
+            getRandomHamster();
         }
 
     }, [newGame])
 
-    function handleClick(winner, looser) {
+    const handleClick = async (winner, looser) => {
         console.log(winner.id);
         console.log(looser.id);
         setWinner(winner);
         newGame ? setNewGame(false) : setNewGame(true);
-        updateWinner(winner.id);
-        updateLooser(looser.id);
-        updateGames(winner.id, looser.id);
+        await updateWinner(winner.id);
+        await updateLooser(looser.id);
+        await updateGames(winner.id, looser.id);
     }
 
     return(
@@ -88,64 +86,70 @@ const Battle = ({ match }) => {
 
 
 function updateWinner(id) {
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", "superSecretKey");
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify({"wins":1,"defeats":0});
-
-    var requestOptions = {
-        method: 'PUT',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-    fetch(`/hamsters/${id}/results`, requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-
-    }
-
-    function updateLooser(id) {
+    
         const myHeaders = new Headers();
         myHeaders.append("Authorization", "superSecretKey");
         myHeaders.append("Content-Type", "application/json");
-    
-        var raw = JSON.stringify({"wins":0,"defeats":1});
-    
+
+        var raw = JSON.stringify({"wins":1,"defeats":0});
+
         var requestOptions = {
             method: 'PUT',
             headers: myHeaders,
             body: raw,
             redirect: 'follow'
         };
-    
+
         fetch(`/hamsters/${id}/results`, requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
+
+
+    }
+
+    function updateLooser(id) {
+        
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", "superSecretKey");
+            myHeaders.append("Content-Type", "application/json");
+        
+            var raw = JSON.stringify({"wins":0,"defeats":1});
+        
+            var requestOptions = {
+                method: 'PUT',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch(`/hamsters/${id}/results`, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
     }
 
     function updateGames(winner, looser) {
-        var myHeaders = new Headers();
-        myHeaders.append("Authorization", "superSecretKey");
-        myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({"contestants":{"id1": winner,"id2": looser}, "winner":{"id": winner}});
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "superSecretKey");
+            myHeaders.append("Content-Type", "application/json");
 
-        var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-        };
+            var raw = JSON.stringify({"contestants":{"id1": winner,"id2": looser}, "winner":{"id": winner}});
 
-        fetch("/games", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+            };
+
+            fetch("/games", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
     }
 
 export default Battle;
