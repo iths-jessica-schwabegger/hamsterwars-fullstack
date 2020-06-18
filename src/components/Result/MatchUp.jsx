@@ -1,83 +1,95 @@
 import React, {useState, useEffect} from "react";
+import "../../App.css";
 
 
 
 const MatchUp = ({ match }) => {
 
-    const [allGames, setAllGames] = useState([]);
-    const [game, setGame] = useState("");
+    const [game, setGame] = useState([]);
     const [winnerId, setWinnerId] = useState("");
-    const [contestants, setContestants] = useState([]);
+    const [hamsterOne, setHamsterOne] = useState("");
+    const [hamsterTwo, setHamsterTwo] = useState("");
     const [winningHamster, setWinningHamster] = useState("");
     const [loosingHamster, setLoosingHamster] = useState("");
+
 
     const id1 = match.params.id1;
     const id2 = match.params.id2;
 
     useEffect(() => {
 
-        if(match) {
-
             async function getGames() {
                 let response = await fetch(`/games`);
                 const games = await response.json();
-                setAllGames(games.games)
+                console.log(games);
+                const searchGame = games.games.filter(game => {
+                    return game.contestants.id1 == id1 && game.contestants.id2 == id2 || game.contestants.id1 == id2 && game.contestants.id2 == id1;
+                })
+
+                setGame(searchGame);
             }
             getGames();
-
-        }
         
     }, []);
 
-    //Filtrera fram matcher där id-nr på match-deltagare är samma som id-nr i url.
-    const searchGame = allGames.filter(game => {
-        return game.contestants.id1 == id1 && game.contestants.id2 == id2 || game.contestants.id1 == id2 && game.contestants.id2 == id1;
-    })
-    
-    // setGame(searchGame);
-
-    console.log(searchGame);
-    console.log(game);
   
     useEffect(() => {
-        if(searchGame.length == 0) {
+        if(game.length == 0) {
             console.log("That battle does not exist!")
         }else {
-            setWinnerId(searchGame[0].winner.id);
-
-            console.log(winnerId);
+            console.log("Match found")
+            setWinnerId(game[0].winner.id);
 
             async function getContestants() {
 
                 const hamsterOne = await getHamsterById(match.params.id1);
                 const hamsterTwo = await getHamsterById(match.params.id2);
 
-                console.log(hamsterOne);
-                console.log(hamsterTwo)
+                // setHamsterOne(hamsterOne.hamster);
+                // setHamsterTwo(hamsterTwo.hamster);
 
-                // setContestants([hamsterOne, hamsterTwo]);
-                // console.log(contestants);
+            //Blir fel, hann inte fixa klart
+            if(hamsterOne.hamster.id === winnerId) {
+                setWinningHamster(hamsterOne.hamster);
+                setLoosingHamster(hamsterTwo.hamster);
+            }else{
+                setWinningHamster(hamsterTwo.hamster); 
+                setLoosingHamster(hamsterOne.hamster);
+            }
 
-                // if(hamsterOne.hamster.id === winnerId) {
-                //     setWinningHamster(hamsterOne);
-                //     setLoosingHamster(hamsterTwo);
-                // }else {
-                //     setWinningHamster(hamsterTwo); 
-                //     setLoosingHamster(hamsterOne);
-                // }
             }
             getContestants();
-
         }
-    }, []);
-
-    //console.log(contestants);
-    console.log(winningHamster);
-    console.log(loosingHamster);
+    }, [game]);
 
     return (
         <section className="matchup">
-            <p>{winnerId}</p>
+            <h1>Previous match results</h1>
+            <section>
+                <article>
+                    <img src={"/images/" + winningHamster.imgName} alt="Cute hamster" />
+                    <p>{winningHamster.name}</p>
+
+                    <h5>About {winningHamster.name}</h5>
+                    <ul key={winningHamster.id}>
+                        <li>Age: {winningHamster.age}</li>
+                        <li>Loves to {winningHamster.loves}</li>
+                        <li>Favourite food: {winningHamster.favFood}</li>
+                    </ul>
+                </article>
+                    <h3>DEFEATS</h3>
+                <article>
+                    <img src={"/images/" + loosingHamster.imgName} alt="Cute hamster" />
+                    <p>{loosingHamster.name}</p>
+
+                    <h5>About {loosingHamster.name}</h5>
+                    <ul key={loosingHamster.id}>
+                        <li>Age: {loosingHamster.age}</li>
+                        <li>Loves to {loosingHamster.loves}</li>
+                        <li>Favourite food: {loosingHamster.favFood}</li>
+                    </ul>
+                </article>
+            </section>
         </section>
     )
 
@@ -86,13 +98,7 @@ const MatchUp = ({ match }) => {
 async function getHamsterById(id) {
     let response = await fetch(`/hamsters/${id}`);
     const hamster = await response.json();
-    console.log(hamster);
     return hamster
 }
 
 export default MatchUp;
-
-
-//Hitta games enligt id i url
-//jämför Id med hamster id för att få fram hamsterobj
-//spara hamsterobj, jämför med winning-id i games-obj.

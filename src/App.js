@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter as Router, Route, Switch, NavLink, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch, NavLink} from "react-router-dom";
 import StartPage from "./components/StartPage/StartPage";
 import Battle from "./components/Battle/Battle";
 import Stats from "./components/Stats/Stats";
@@ -19,13 +19,6 @@ transform: skewY(5deg);
 transform-origin: bottom left;
 `;
 
-const StyledButton = styled.button`
-  font-size: 0.7rem;
-  padding: 0.5rem 1rem;
-  align-self: flex-start;
-  margin: 1rem auto 0 1rem;
-  background-color: #6B7A8F;
-`
 
 function App() {
   return (
@@ -34,9 +27,6 @@ function App() {
       <Switch>
         <Route path="/">
           <header className="app-header">
-            {/* <StyledButton>
-              <Link to="/matchup">Search old game</Link>
-            </StyledButton> */}
             <nav>
               <NavLink to="/" activeClassName="active"> Start </NavLink>
               <NavLink to="/battle" activeClassName="active"> Battle </NavLink>

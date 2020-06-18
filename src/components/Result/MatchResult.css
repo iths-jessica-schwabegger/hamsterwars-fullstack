@@ -13,8 +13,51 @@
     text-align: left;
 }
 
-.match-result img {
+.match-result img, .matchup img {
+    border-radius: 50%;
+    object-fit: cover;
     width: 5rem;
     height: 5rem;
     margin: 0;
+}
+
+.matchup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.matchup h3 {
+    font-size: 2.5rem;
+}
+
+.matchup section {
+    display: flex;
+}
+
+.matchup article{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    align-items: center;
+}
+
+.matchup p {
+    margin: 0;
+}
+
+.matchup h5 {
+    margin: 2rem 0 0 0;
+    font-size: 1rem;
+    align-self: flex-start;
+}
+
+.matchup ul {
+    list-style: none;
+    padding: 0;
+}
+
+.matchup .hide {
+    display: none;
 }

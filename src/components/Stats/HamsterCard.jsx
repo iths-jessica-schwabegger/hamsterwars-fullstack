@@ -27,7 +27,7 @@ const HamsterCard = () => {
             <article className="top-hamsters">
                 <h3>Top 5 hamsters!</h3>
                 {topHamsters.map(hamster => (
-                    <section>
+                    <section key={hamster.id}>
                         <article>
                             <h5>{hamster.name}</h5>
                             <p>Wins: {hamster.wins}</p>
@@ -39,7 +39,7 @@ const HamsterCard = () => {
             <article className="bottom-hamsters">
                 <h3>Bottom 5 hamsters!</h3>
                 {bottomHamsters.map(hamster => (
-                    <section>
+                    <section key={hamster.id}>
                         <article>
                             <h5>{hamster.name}</h5>
                             <p>Defeats: {hamster.defeats}</p>
